@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ini adalah beberapa contoh project latihan Vanilla JavaScript"
+    />
+    <meta
+      name="keywords"
+      content="Belajar HTML, Belajar JavaScript, Project JavaScript, Latihan JavaScript, Vanilla JavaScript"
+    />
+    <meta name="author" content="Adnan Muttaqin" />
+    <meta name="theme-color" content="#252827" />
+    <title>Calculator</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/website/favicon-iniadnan.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <style>
+      button {
+        background-color: transparent;
+        padding: 12px;
+        font-weight: 500;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .main {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .calculator-container {
+        width: 350px;
+        padding: 32px 18px;
+        background-color: #000;
+        border-radius: 5px;
+      }
+      .total-value-top {
+        width: 100%;
+        background-color: transparent;
+        font-weight: 500;
+        font-size: 46px;
+        color: #f1f1f1;
+        text-align: right;
+        transition: 0.15s ease-in;
+      }
+      .total-value-bottom {
+        display: none;
+        font-weight: 500;
+        font-size: 32px;
+        color: #555;
+        text-align: right;
+        transition: 0.15s ease-in;
+      }
+      .line {
+        height: 1px;
+        width: 100%;
+        background-color: #222;
+        margin: 16px 0px;
+      }
+      .symbol-color {
+        color: #fa7d09;
+      }
+      .symbol-size {
+        font-size: 24px;
+      }
+      .symbol-total {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fa7d09;
+        color: #f1f1f1;
+      }
+      .number-color {
+        color: #f1f1f1;
+      }
+      .number-symbol-container {
+        width: 100%;
+      }
+      .number-symbol-container > div {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .number-symbol-container > div:last-child {
+        margin-bottom: 0px;
+      }
+      .number-symbol-container > div > div {
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      @media (max-width: 500px) {
+        body {
+          background-color: #000;
+        }
+        .calculator-container {
+          border: 1px solid #222;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main">
+      <article class="calculator-container">
+        <div class="total-container">
+          <input type="text" class="total-value-top" value="0" readonly />
+          <div class="total-value-bottom"></div>
+        </div>
+        <div class="line"></div>
+        <div class="number-symbol-container">
+          <div>
+            <div>
+              <button type="button" class="symbol-color" onclick="clearTotal()">
+                AC
+              </button>
+            </div>
+            <div>
+              <button type="button" class="symbol-color" onclick="deleteOne()">
+                DEL
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="symbol-color"
+                onclick="clickOperator('%')"
+              >
+                %
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="symbol-color"
+                onclick="clickOperator('/')"
+              >
+                /
+              </button>
+            </div>
+          </div>
+          <div>
+            <div>
+              <button
+                type="button"
+                class="number-color"
+                onclick="clickNumber(7)"
+              >
+                7
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="number-color"
+                onclick="clickNumber(8)"
+              >
+                8
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="number-color"
+                onclick="clickNumber(9)"
+              >
+                9
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="symbol-color symbol-size"
+                onclick="clickOperator('*')"
+              >
+                *
+              </button>
+            </div>
+          </div>
+          <div>
+            <div>
+              <button
+                type="button"
+                class="number-color"
+                onclick="clickNumber(4)"
+              >
+                4
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="number-color"
+                onclick="clickNumber(5)"
+              >
+                5
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="number-color"
+                onclick="clickNumber(6)"
+              >
+                6
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="symbol-color symbol-size"
+                onclick="clickOperator('-')"
+              >
+                -
+              </button>
+            </div>
+          </div>
+          <div>
+            <div>
+              <button
+                type="button"
+                class="number-color"
+                onclick="clickNumber(1)"
+              >
+                1
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="number-color"
+                onclick="clickNumber(2)"
+              >
+                2
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="number-color"
+                onclick="clickNumber(3)"
+              >
+                3
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="symbol-color symbol-size"
+                onclick="clickOperator('+')"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <div>
+            <div>
+              <button type="button" class="number-color" onclick="reload()">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  class="bi bi-arrow-counterclockwise"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"
+                  />
+                  <path
+                    d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="number-color"
+                onclick="clickNumber(0)"
+              >
+                0
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="number-color symbol-size"
+                onclick="clickNumber('.')"
+              >
+                .
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="symbol-color symbol-size symbol-total"
+                onclick="total()"
+              >
+                =
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+    <script>
+      const totalValueTopDOM = document.querySelector(".total-value-top");
+      const totalValueBottomDOM = document.querySelector(".total-value-bottom");
+      let saveOperator = "";
+      let isTotal = false;
+
+      // IF CLICK NUMBER
+      function clickNumber(number) {
+        // IF IS TOTAL !FALSE RESET
+        if (isTotal) {
+          clearTotal();
+        }
+
+        let getValueTopDOM = totalValueTopDOM.value;
+        if (number == ".") {
+          totalValueTopDOM.value = getValueTopDOM + number;
+          totalValueBottomDOM.innerText = "= " + totalValueTopDOM.value;
+        } else if (getValueTopDOM == "0") {
+          totalValueTopDOM.value = number;
+          totalValueBottomDOM.innerText = "= " + totalValueTopDOM.value;
+        } else if (saveOperator != "") {
+          totalValueTopDOM.value = getValueTopDOM + number;
+          let getNewValueTopDOM = totalValueTopDOM.value;
+          let a, b;
+          let valueToArray = totalValueTopDOM.value.split(saveOperator);
+          [a, b] = valueToArray;
+          totalValueBottomDOM.innerText =
+            "= " + eval(Number(a) + saveOperator + Number(b));
+        } else {
+          totalValueTopDOM.value = getValueTopDOM + number;
+          totalValueBottomDOM.innerText = "= " + totalValueTopDOM.value;
+        }
+        totalValueBottomDOM.style.display = "block";
+      }
+
+      // IF CLICK OPERATOR
+      function clickOperator(operator) {
+        if (saveOperator != "") {
+          return;
+        }
+        let getValueTopDOM = totalValueTopDOM.value;
+        saveOperator = operator;
+        totalValueTopDOM.value = getValueTopDOM + operator;
+      }
+
+      // CLEAR TOTAL
+      function clearTotal() {
+        saveOperator = "";
+        isTotal = false;
+        totalValueTopDOM.value = 0;
+        totalValueBottomDOM.style.display = "none";
+        totalValueTopDOM.style.fontSize = "46px";
+        totalValueBottomDOM.style.fontSize = "32px";
+        totalValueBottomDOM.style.color = "#555";
+      }
+
+      // DELETE 1 TOTAL
+      function deleteOne() {
+        let getLastValue = totalValueTopDOM.value.charAt(
+          totalValueTopDOM.value.length - 1
+        );
+        // CHECK IF LAST DELETED IS SYMBOL RESET VALUE SAVE OPERATOR
+        if (
+          getLastValue == "%" ||
+          getLastValue == "/" ||
+          getLastValue == "*" ||
+          getLastValue == "-" ||
+          getLastValue == "+"
+        ) {
+          saveOperator = "";
+        }
+        totalValueTopDOM.value = totalValueTopDOM.value.slice(0, -1);
+        if (totalValueTopDOM.value == 0) {
+          totalValueTopDOM.value = 0;
+          totalValueBottomDOM.style.display = "none";
+          return;
+        }
+        totalValueBottomDOM.innerText = "= " + totalValueTopDOM.value;
+      }
+
+      function total() {
+        totalValueTopDOM.style.fontSize = "24px";
+        totalValueBottomDOM.style.fontSize = "48px";
+        totalValueBottomDOM.style.color = "#f1f1f1";
+        isTotal = true;
+      }
+
+      function reload() {
+        location.reload();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ini adalah beberapa contoh project latihan Vanilla JavaScript"
+    />
+    <meta
+      name="keywords"
+      content="Belajar HTML, Belajar JavaScript, Project JavaScript, Latihan JavaScript, Vanilla JavaScript"
+    />
+    <meta name="author" content="Adnan Muttaqin" />
+    <meta name="theme-color" content="#252827" />
+    <title>Event Countdown Timer</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/website/favicon-iniadnan.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <style>
+      .main {
+        width: 100%;
+      }
+      h1 {
+        padding: 24px 0px;
+        font-weight: 500;
+        font-size: 40px;
+        color: #000;
+        text-align: center;
+      }
+      .section {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .article {
+        width: 20%;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 32px;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main">
+      <h1>Event Countdown Timer - Create Element Every 3s</h1>
+      <section class="section"></section>
+    </main>
+    <script>
+      // GET API COLOR
+      async function getColor() {
+        const response = await fetch("./data/colors.json", {
+          method: "GET",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        return response.json();
+      }
+
+      // SET VARIABEL MAIN DOM
+      const mainDOM = document.querySelector(".main");
+
+      // EVENT CREATE
+      let eventCreate = 0;
+
+      // FUNCTION: CREATE EVENT
+      function createEvent(color) {
+        eventCreate++;
+        const article = document.createElement("ARTICLE");
+        article.innerText = `Event #${eventCreate}`;
+        article.classList.add("article");
+        article.style.backgroundColor = color;
+        mainDOM.querySelector(".section").appendChild(article);
+      }
+
+      // CREATE EVENT EVERY 5s
+      setInterval(() => {
+        getColor().then((data) => {
+          let getRandomColor =
+            data.colors[Math.floor(Math.random() * data.colors.length)];
+          createEvent(getRandomColor);
+        });
+      }, 5000);
+    </script>
+  </body>
+</html>

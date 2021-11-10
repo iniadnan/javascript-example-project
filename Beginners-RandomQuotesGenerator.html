@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ini adalah beberapa contoh project latihan Vanilla JavaScript"
+    />
+    <meta
+      name="keywords"
+      content="Belajar HTML, Belajar JavaScript, Project JavaScript, Latihan JavaScript, Vanilla JavaScript"
+    />
+    <meta name="author" content="Adnan Muttaqin" />
+    <meta name="theme-color" content="#252827" />
+    <title>Random Quotes Generator</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/website/favicon-iniadnan.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <style>
+      .main {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #000;
+      }
+      .article {
+        width: 50%;
+        padding: 16px 24px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.3);
+        font-size: 20px;
+        color: #000;
+      }
+      .article p {
+        margin-bottom: 16px;
+      }
+      .article strong {
+        font-weight: 500;
+      }
+      .all-photo {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 6px 12px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.3);
+        font-size: 12px;
+      }
+      .all-photo strong {
+        font-weight: 600;
+      }
+      @media (max-width: 991px) {
+        .article {
+          width: 60%;
+        }
+      }
+      @media (max-width: 768px) {
+        .article {
+          width: 75%;
+        }
+      }
+      @media (max-width: 568px) {
+        .article {
+          width: 80%;
+          font-size: 18px;
+        }
+      }
+      @media (max-width: 468px) {
+        .article {
+          width: 85%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="main">
+      <article class="article">
+        <p></p>
+        <strong></strong>
+      </article>
+      <div class="all-photo">All photo from <strong>Unsplash</strong></div>
+    </main>
+    <script>
+      // FUNCTION: GET QUOTES FROM JSON / API
+      async function getQuotes() {
+        const response = await fetch("./data/quotes.json", {
+          method: "GET",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        return response.json();
+      }
+
+      // MAIN DOM
+      const mainDOM = document.querySelector(".main");
+      // GET ID QUOTE & TOTAL QUOTE & REMOVE QUOTE
+      let dataQuotes = [];
+      let quotesToRemove = [];
+
+      getQuotes().then((data) => {
+        // SAVE RESULT TO dataQuotes
+        dataQuotes = data.quotes;
+        let randomQuote =
+          dataQuotes[Math.floor(Math.random() * dataQuotes.length)];
+        // REMOVE DATA EVERY SHOW QUOTE
+        quotesToRemove = dataQuotes.filter(
+          (item) => item.id !== randomQuote.id
+        );
+        mainDOM.style.backgroundImage = `url('${randomQuote.image}')`;
+        mainDOM.querySelector(
+          ".article p"
+        ).innerHTML = `"${randomQuote.quote}"`;
+        mainDOM.querySelector(
+          ".article strong"
+        ).innerText = `- ${randomQuote.author}`;
+      });
+
+      // FUNCTION: CHANGE QUOTE
+      function changeQuote() {
+        // IF DATA quotesToRemove > & IF DATA QUOTE quotesToRemove = 0 FILL AGAIN
+        if (quotesToRemove.length > 0) {
+          let randomQuote =
+            quotesToRemove[Math.floor(Math.random() * quotesToRemove.length)];
+          // REMOVE DATA EVERY SHOW QUOTE
+          quotesToRemove = quotesToRemove.filter(
+            (item) => item.id !== randomQuote.id
+          );
+          mainDOM.style.backgroundImage = `url('${randomQuote.image}')`;
+          mainDOM.querySelector(
+            ".article p"
+          ).innerHTML = `"${randomQuote.quote}"`;
+          mainDOM.querySelector(
+            ".article strong"
+          ).innerText = `- ${randomQuote.author}`;
+        } else {
+          let randomQuote =
+            dataQuotes[Math.floor(Math.random() * dataQuotes.length)];
+          // REMOVE DATA EVERY SHOW QUOTE
+          quotesToRemove = dataQuotes.filter(
+            (item) => item.id !== randomQuote.id
+          );
+          mainDOM.style.backgroundImage = `url('${randomQuote.image}')`;
+          mainDOM.querySelector(
+            ".article p"
+          ).innerHTML = `"${randomQuote.quote}"`;
+          mainDOM.querySelector(
+            ".article strong"
+          ).innerText = `- ${randomQuote.author}`;
+        }
+      }
+
+      setInterval(() => {
+        changeQuote();
+      }, 7000);
+    </script>
+  </body>
+</html>

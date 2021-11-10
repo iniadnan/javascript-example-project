@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ini adalah beberapa contoh project latihan Vanilla JavaScript"
+    />
+    <meta
+      name="keywords"
+      content="Belajar HTML, Belajar JavaScript, Project JavaScript, Latihan JavaScript, Vanilla JavaScript"
+    />
+    <meta name="author" content="Adnan Muttaqin" />
+    <meta name="theme-color" content="#252827" />
+    <title>Create A Modal</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/website/favicon-iniadnan.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <style>
+      .main {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        background-color: #fff;
+      }
+      .main h1 {
+        margin-bottom: 36px;
+        font-weight: 500;
+        font-size: 40px;
+        color: #000;
+        text-align: center;
+      }
+      .main button {
+        height: 50px;
+        padding: 0px 24px;
+        margin: 0px 16px;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 18px;
+        color: #000;
+        background-color: #eee;
+        transition: 0.15s ease-in;
+      }
+      .main button:hover {
+        background-color: #000;
+        color: #eee;
+      }
+      .modal-container {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        visibility: hidden;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      .modal-1,
+      .modal-2,
+      .modal-3 {
+        height: 50%;
+        width: 70%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+      }
+      .modal-2,
+      .modal-3 {
+        transition: height 0.25s ease-in, transform 0.25s ease-in;
+      }
+      .modal-3 {
+        transform: translate(-50%, -60%);
+        background-color: #fff;
+      }
+      .modal-container h2 {
+        font-size: 40px;
+      }
+      .close-modal {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background-color: #fff;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .close-modal svg {
+        height: 24px;
+        width: 24px;
+        color: #000;
+      }
+      .d-flex {
+        display: flex;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="main">
+      <div>
+        <h1>Create A Modal</h1>
+        <button type="button" onclick="modalOpen1()">Modal 1</button>
+        <button type="button" onclick="modalOpen2()">Modal 2</button>
+        <button type="button" onclick="modalOpen3()">Modal 3</button>
+      </div>
+    </main>
+    <div class="modal-container">
+      <button type="button" class="close-modal" onclick="closeModal()">
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+      <div class="modal-1">
+        <h2>Hello I'm Modal 1</h2>
+      </div>
+      <div class="modal-2">
+        <h2>Hello I'm Modal 2</h2>
+      </div>
+      <div class="modal-3">
+        <h2>Hello I'm Modal 3</h2>
+      </div>
+    </div>
+    <script>
+      // DOM NUMBER COUNTER
+      const modalContainerDOM = document.querySelector(".modal-container");
+      const modal1DOM = document.querySelector(".modal-1");
+      const modal2DOM = document.querySelector(".modal-2");
+      const modal3DOM = document.querySelector(".modal-3");
+
+      // FUNCTION: MODAL OPEN 1
+      function modalOpen1() {
+        // CHANGE Z-INDEX & VISIBILITY MODAL-CONTAINER
+        modalContainerDOM.style.cssText = `
+                z-index: 1;
+                visibility: visible;
+            `;
+
+        modal1DOM.style.cssText = `
+                opacity: 1;
+                visibility: visible;
+                background-color: #fff;
+            `;
+      }
+      // FUNCTION: MODAL OPEN 2
+      function modalOpen2() {
+        // CHANGE Z-INDEX & VISIBILITY MODAL-CONTAINER
+        modalContainerDOM.style.cssText = `
+                z-index: 1;
+                visibility: visible;
+            `;
+        modal2DOM.style.cssText = `
+                height: 70%;
+                opacity: 1;
+                visibility: visible;
+                background-color: #fff;
+            `;
+      }
+      // FUNCTION: MODAL OPEN 3
+      function modalOpen3() {
+        // CHANGE Z-INDEX & VISIBILITY MODAL-CONTAINER
+        modalContainerDOM.style.cssText = `
+                z-index: 1;
+                visibility: visible;
+            `;
+        modal3DOM.style.cssText = `
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, -50%);
+            `;
+      }
+      // FUNCTION: CLOSE MODAL
+      function closeModal() {
+        // RESET
+        modalContainerDOM.style.cssText = `
+                z-index: -1;
+                visibility: hidden;
+            `;
+        modal1DOM.style.cssText = `
+                opacity: 0;
+                visibility: hidden;
+            `;
+        modal2DOM.style.cssText = `
+                opacity: 0;
+                visibility: hidden;
+            `;
+        modal3DOM.style.cssText = `
+                opacity: 0;
+                visibility: hidden;
+            `;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ini adalah beberapa contoh project latihan Vanilla JavaScript"
+    />
+    <meta
+      name="keywords"
+      content="Belajar HTML, Belajar JavaScript, Project JavaScript, Latihan JavaScript, Vanilla JavaScript"
+    />
+    <meta name="author" content="Adnan Muttaqin" />
+    <meta name="theme-color" content="#252827" />
+    <title>Rock Paper Scissor Game</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/website/favicon-iniadnan.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <style>
+      body {
+        background-color: #ffbfa9;
+      }
+      button {
+        background-color: transparent;
+        cursor: pointer;
+      }
+      .main {
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
+      .skor {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .skor span {
+        height: 50px;
+        width: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 28px;
+        color: #000;
+      }
+      .select-type {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .select-type div {
+        text-align: center;
+      }
+      .select-type img {
+        height: 150px;
+        width: 150px;
+        transition: 0.15s ease-in-out;
+      }
+      .select-type img:hover {
+        transform: scale(1.2);
+      }
+      .scale-1-2 {
+        transform: scale(1.2);
+      }
+      .select-type-rock {
+        margin-bottom: 38px;
+      }
+      .select-type-paper {
+        margin-right: 38px;
+      }
+      .select-type-scissor {
+        margin-left: 38px;
+      }
+      .button-start {
+        background-color: #fd8b24;
+        padding: 12px 32px;
+        margin-top: 40px;
+        font-weight: 500;
+        font-size: 20px;
+        color: #fff;
+      }
+      .license {
+        padding: 12px 18px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.3);
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-size: 12px;
+        color: #fff;
+      }
+      .modal-countdown {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.75);
+        font-weight: 700;
+        font-size: 100px;
+        color: #fff;
+        display: none;
+      }
+      .modal-user-vs-bot {
+        display: none;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: 2;
+        background-color: #ffbfa9;
+      }
+      .muvb-vs {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fd8b24;
+        padding: 18px 32px;
+        font-weight: 700;
+        font-size: 100px;
+        color: #fff;
+      }
+      .muvb-user,
+      .muvb-bot {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: 2s ease-in;
+      }
+      .muvb-user {
+        left: 40px;
+      }
+      .muvb-bot {
+        right: 40px;
+      }
+      .muvb-finish {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fd8b24;
+        padding: 12px 28px;
+        font-weight: 500;
+        font-size: 20px;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main">
+      <div class="skor">
+        <span class="skor-left">0</span>
+        <span class="skor-right">0</span>
+      </div>
+      <article class="select-type">
+        <div>
+          <button type="button">
+            <img
+              class="select-type-rock"
+              src="./assets/images/rock.png"
+              alt="Rock"
+              onclick="userSelect('rock')"
+            />
+          </button>
+        </div>
+        <div>
+          <button type="button">
+            <img
+              class="select-type-paper"
+              src="./assets/images/paper.png"
+              alt="Paper"
+              onclick="userSelect('paper')"
+            />
+          </button>
+          <button type="button">
+            <img
+              class="select-type-scissor"
+              src="./assets/images/scissor.png"
+              alt="Scissor"
+              onclick="userSelect('scissor')"
+            />
+          </button>
+        </div>
+        <div>
+          <button type="button" class="button-start" onclick="start()">
+            START
+          </button>
+        </div>
+      </article>
+      <a
+        class="license"
+        href="https://www.vecteezy.com/free-vector/rock"
+        rel="nofollow"
+        nofollow
+        >Rock Vectors by Vecteezy</a
+      >
+      <!-- MODAL: COUNTDOWN -->
+      <div class="modal-countdown">3</div>
+      <div class="modal-user-vs-bot">
+        <img class="muvb-user" src="" alt="User" />
+        <div class="muvb-vs">Vs</div>
+        <img class="muvb-bot" src="" alt="Bot" />
+        <button type="button" class="muvb-finish" onclick="finish()">
+          FINISH
+        </button>
+      </div>
+    </main>
+    <script>
+      // GET DOM
+      const modalDOM = document.querySelector(".modal-countdown");
+      const skorLeft = document.querySelector(".skor-left");
+      const skorRight = document.querySelector(".skor-right");
+      const muvbDOM = document.querySelector(".modal-user-vs-bot");
+      const muvbUserDOM = document.querySelector(".muvb-user");
+      const muvbBotDOM = document.querySelector(".muvb-bot");
+      let resultFight = "";
+      let user = "";
+      let timer = 2;
+
+      // REMOVE CLASS SELECT TYPE
+      function removeClassSelect() {
+        document
+          .querySelector(".select-type-rock")
+          .classList.remove("scale-1-2");
+        document
+          .querySelector(".select-type-paper")
+          .classList.remove("scale-1-2");
+        document
+          .querySelector(".select-type-scissor")
+          .classList.remove("scale-1-2");
+      }
+
+      // BOT SELECTING TYPE
+      function botSelect() {
+        const listType = ["rock", "paper", "scissor"];
+        return listType[Math.floor(Math.random() * listType.length)];
+      }
+
+      // USER SELECTING TYPE
+      function userSelect(type) {
+        removeClassSelect();
+        document
+          .querySelector(".select-type-" + type)
+          .classList.add("scale-1-2");
+        user = type;
+      }
+
+      // LOGIC WHO IS WIN
+      function logicGetWin(user, bot) {
+        if (user == "rock" && bot == "rock") {
+          return "draw";
+        } else if (user == "rock" && bot == "paper") {
+          return "bot";
+        } else if (user == "rock" && bot == "scissor") {
+          return "user";
+        } else if (user == "paper" && bot == "rock") {
+          return "user";
+        } else if (user == "paper" && bot == "paper") {
+          return "draw";
+        } else if (user == "paper" && bot == "scissor") {
+          return "bot";
+        } else if (user == "scissor" && bot == "rock") {
+          return "bot";
+        } else if (user == "scissor" && bot == "paper") {
+          return "user";
+        } else if (user == "scissor" && bot == "scissor") {
+          return "draw";
+        }
+      }
+
+      // START GAME
+      function start() {
+        if (user === "") {
+          alert("Please select type!");
+          return;
+        }
+        modalDOM.style.display = "flex";
+
+        // READY 5s BEFORE START
+        let setTimer = setInterval(() => {
+          if (timer == 0) {
+            let bot = botSelect();
+            resultFight = logicGetWin(user, bot);
+
+            // SHOW WAR!
+            muvbUserDOM.src = `./assets/images/${user}.png`;
+            muvbBotDOM.src = `./assets/images/${bot}.png`;
+            muvbDOM.style.display = "flex";
+
+            clearInterval(setTimer);
+          } else {
+            modalDOM.innerText = timer;
+          }
+          timer -= 1;
+        }, 1000);
+      }
+
+      function finish() {
+        // COUNT WHO IS WON
+        if (resultFight == "user") {
+          skorLeft.innerText = Number(skorLeft.innerText) + 1;
+        } else if (resultFight == "bot") {
+          skorRight.innerText = Number(skorRight.innerText) + 1;
+        }
+
+        // HIDE MODAL AGAIN
+        modalDOM.style.display = "none";
+        modalDOM.innerText = 3;
+
+        // RESET
+        removeClassSelect();
+        user = "";
+        timer = 2;
+
+        // HIDE WAR!
+        muvbDOM.style.display = "none";
+      }
+    </script>
+  </body>
+</html>

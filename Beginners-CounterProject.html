@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ini adalah beberapa contoh project latihan Vanilla JavaScript"
+    />
+    <meta
+      name="keywords"
+      content="Belajar HTML, Belajar JavaScript, Project JavaScript, Latihan JavaScript, Vanilla JavaScript"
+    />
+    <meta name="author" content="Adnan Muttaqin" />
+    <meta name="theme-color" content="#252827" />
+    <title>Counter Project</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/website/favicon-iniadnan.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <style>
+      .main {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        text-align: center;
+      }
+      .container h1 {
+        margin-bottom: 40px;
+        font-size: 32px;
+      }
+      .container h2 {
+        margin-bottom: 40px;
+        font-size: 60px;
+      }
+      .container button {
+        height: 50px;
+        width: 50px;
+        font-size: 20px;
+        margin: 0px 24px;
+        cursor: pointer;
+        color: #000;
+        background-color: #eee;
+        transition: 0.15s ease-in;
+      }
+      .container .button-reset {
+        height: 50px;
+        width: 150px;
+        margin-top: 24px;
+        font-size: 18px;
+      }
+      .container button:hover {
+        background-color: #000;
+        color: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main">
+      <div class="container">
+        <h1>Counter Project</h1>
+        <h2 class="number-counter">0</h2>
+        <div>
+          <button type="button" onclick="decrease()">-</button>
+          <button type="button" onclick="increase()">+</button>
+        </div>
+        <button type="button" class="button-reset" onclick="reset()">
+          RESET
+        </button>
+      </div>
+    </main>
+    <script>
+      // DOM NUMBER COUNTER
+      const numberCounterDOM = document.querySelector(".number-counter");
+
+      // FUNCTION: INCREASE! PLUS 1 EVERY CLICK
+      function increase() {
+        numberCounterDOM.innerText = Number(numberCounterDOM.innerText) + 1;
+      }
+      // FUNCTION: DECREASE! MIN 1 EVERY CLICK
+      function decrease() {
+        numberCounterDOM.innerText = Number(numberCounterDOM.innerText) - 1;
+      }
+      // FUNCTION: RESET TO 0
+      function reset() {
+        numberCounterDOM.innerText = 0;
+      }
+    </script>
+  </body>
+</html>

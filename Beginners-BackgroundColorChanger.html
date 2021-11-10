@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ini adalah beberapa contoh project latihan Vanilla JavaScript"
+    />
+    <meta
+      name="keywords"
+      content="Belajar HTML, Belajar JavaScript, Project JavaScript, Latihan JavaScript, Vanilla JavaScript"
+    />
+    <meta name="author" content="Adnan Muttaqin" />
+    <meta name="theme-color" content="#252827" />
+    <title>Background Color Changer</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/website/favicon-iniadnan.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <style>
+      .main {
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .aside {
+        height: 100%;
+        width: 65%;
+        display: flex;
+        flex-wrap: wrap;
+        overflow-y: auto;
+      }
+      .article {
+        height: 175px;
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .section {
+        height: 100%;
+        width: 35%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 28px;
+        transition: 0.2s ease-in;
+        background-color: #000000;
+        color: #fff;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #000;
+      }
+      @media (max-width: 991px) {
+        .article {
+          height: 130px;
+          font-size: 20px;
+        }
+      }
+      @media (max-width: 768px) {
+        .main {
+          flex-direction: column-reverse;
+        }
+        .aside {
+          height: 50%;
+          width: 100%;
+        }
+        .section {
+          height: 50%;
+          width: 100%;
+        }
+        .article {
+          height: 150px;
+          width: 25%;
+          font-size: 22px;
+        }
+      }
+      @media (max-width: 568px) {
+        .article {
+          height: 140px;
+          width: 33.33%;
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main">
+      <aside class="aside"></aside>
+      <section class="section">Default: #000000</section>
+    </main>
+    <script>
+      // FUNCTION: GET COLORS FROM JSON / API
+      async function getColor() {
+        const response = await fetch("./data/colors.json", {
+          method: "GET",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        return response.json();
+      }
+
+      // FUNCTION: MAKE COLOR BOX
+      let colorBoxHTML = "";
+      function makeColorBox(color) {
+        colorBoxHTML +=
+          `<article class="article" onclick="changeColor('` +
+          color +
+          `')" style="background-color: ` +
+          color +
+          `">` +
+          color.toUpperCase() +
+          `</article>`;
+      }
+
+      // SHOW DATA
+      getColor().then((data) => {
+        // LOOPING DATA AND SAVE TO VARIABEL "colorBoxHTML"
+        data.colors.forEach(makeColorBox);
+        document.querySelector(".aside").innerHTML = colorBoxHTML;
+      });
+
+      // FUNCTION: CHANGE COLOR
+      function changeColor(color) {
+        const sectionDOM = document.querySelector(".section");
+        sectionDOM.style.backgroundColor = color;
+        sectionDOM.innerHTML = color.toUpperCase();
+      }
+    </script>
+  </body>
+</html>

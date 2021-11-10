@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ini adalah beberapa contoh project latihan Vanilla JavaScript"
+    />
+    <meta
+      name="keywords"
+      content="Belajar HTML, Belajar JavaScript, Project JavaScript, Latihan JavaScript, Vanilla JavaScript"
+    />
+    <meta name="author" content="Adnan Muttaqin" />
+    <meta name="theme-color" content="#252827" />
+    <title>JavaScript Project</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/website/favicon-iniadnan.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <style>
+      .main {
+        max-width: 1100px;
+        width: 90%;
+        padding: 40px 0px;
+        margin: 0px auto;
+      }
+      .section-title {
+        margin-bottom: 40px;
+      }
+      .section-title h1 {
+        font-weight: 600;
+        font-size: 40px;
+        text-align: center;
+        color: #000;
+      }
+      .container-project {
+        width: 100%;
+      }
+      .container-project h3 {
+        width: 100%;
+        margin-bottom: 18px;
+        font-weight: 600;
+        font-size: 24px;
+        color: #000;
+      }
+      .section-article {
+        display: grid;
+        grid-template-columns: 31.5% 31.5% 31.5%;
+        gap: 18px;
+      }
+      .project-list a {
+        display: block;
+        padding: 32px 12px;
+        border-radius: 4px;
+        background-color: whitesmoke;
+        transition: 0.15s ease-in;
+      }
+      .project-list a h2 {
+        font-weight: 500;
+        font-size: 20px;
+        color: #000;
+        text-align: center;
+      }
+      .project-list a:hover {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+      }
+      @media (max-width: 768px) {
+        .main {
+          width: 92%;
+          padding: 35px 0px;
+        }
+        .section-title {
+          margin-bottom: 35px;
+        }
+        .section-title h1 {
+          font-size: 36px;
+        }
+        .container-project h3 {
+          margin-bottom: 16px;
+          font-size: 22px;
+        }
+        .section-article {
+          grid-template-columns: 48% 48%;
+          gap: 16px;
+        }
+      }
+      @media (max-width: 576px) {
+        .main {
+          width: 95%;
+          padding: 30px 0px;
+        }
+        .section-title {
+          margin-bottom: 32px;
+        }
+        .section-title h1 {
+          font-size: 30px;
+        }
+        .container-project h3 {
+          font-size: 20px;
+        }
+        .section-article {
+          grid-template-columns: 100%;
+          gap: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main">
+      <section class="section-title">
+        <h1>JavaScript Project</h1>
+      </section>
+      <div class="container-project">
+        <h3>Beginners</h3>
+        <section class="section-article">
+          <article class="project-list">
+            <a href="./Beginners-BackgroundColorChanger.html" target="_blank"
+              ><h2>Background Color Changer</h2></a
+            >
+          </article>
+          <article class="project-list">
+            <a href="./Beginners-Calculator.html" target="_blank"
+              ><h2>Calculator</h2></a
+            >
+          </article>
+          <article class="project-list">
+            <a href="./Beginners-CreateAModal.html" target="_blank"
+              ><h2>Create A Modal</h2></a
+            >
+          </article>
+          <article class="project-list">
+            <a href="./Beginners-EventCountdownTimer.html" target="_blank"
+              ><h2>Event Countdown Timer</h2></a
+            >
+          </article>
+          <article class="project-list">
+            <a href="./Beginners-RandomQuotesGenerator.html" target="_blank"
+              ><h2>Random Quotess Generator</h2></a
+            >
+          </article>
+          <article class="project-list">
+            <a href="./Beginners-RockPaperScissorGame.html" target="_blank"
+              ><h2>Rock Paper Sscissor Game</h2></a
+            >
+          </article>
+          <article class="project-list">
+            <a href="./Beginners-ToDoList.html" target="_blank"
+              ><h2>To Do List</h2></a
+            >
+          </article>
+          <article class="project-list">
+            <a href="./Beginners-WordCounter.html" target="_blank"
+              ><h2>Word Counter</h2></a
+            >
+          </article>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

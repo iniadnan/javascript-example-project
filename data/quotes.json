@@ -1,0 +1,40 @@
+{
+    "quotes": [
+        {
+            "id": 1,
+            "author": "Sapardi Djoko Damono",
+            "quote": "aku ingin mencintaimu dengan sederhana;<br /> dengan kata yang tak sempat diucapkan<br /> kayu kepada api yang menjadikannya abu<br /><br /> aku ingin mencintaimu dengan sederhana;<br /> dengan isyarat yang tak sempat disampaikan awan kepada hujan yang menjadikannya tiada",
+            "image": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
+        },
+        {
+            "id": 2,
+            "author": "Emha Ainun Najib",
+            "quote": "Menyepi itu penting, supaya kamu benar-benar bisa mendengar apa yang menjadi isi dari keramaian.",
+            "image": "https://images.unsplash.com/photo-1519238425857-d6922ed3d613?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1176&q=80"
+        },
+        {
+            "id": 3,
+            "author": "Khalil Gibran",
+            "quote": "Cinta turun ke dalam roh kita melalui kehendak Tuhan, dan bukan melalui kemauan manusia sendiri.",
+            "image": "https://images.unsplash.com/photo-1513279922550-250c2129b13a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
+        },
+        {
+            "id": 4,
+            "author": "Nizar Qabbani",
+            "quote": "Saya belum memberi tahu mereka tentang kamu, tapi mereka melihat kamu dalam kata-kata tertulis saya. Parfum cinta memang tidak bisa disembunyikan.",
+            "image": "https://images.unsplash.com/photo-1530819568329-97653eafbbfa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1165&q=80"
+        },
+        {
+            "id": 5,
+            "author": "Sujiwo Tejo",
+            "quote": "Tak ada lagi airmata yang dapat kau timba, Kekasih, karena sungguh rinduku padamu kini telah menyumur tanpa dasar.",
+            "image": "https://images.unsplash.com/photo-1475257026007-0753d5429e10?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
+        },
+        {
+            "id": 6,
+            "author": "Dilan 1990",
+            "quote": "Aku tak ingin kamu hilang dari bumi yang akan membuat aku sunyi, yang akan membuat aku sedih, yang akan membuat aku nangis tak bisa berhenti.",
+            "image": "https://images.unsplash.com/photo-1471513671800-b09c87e1497c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
+        }
+    ]
+}

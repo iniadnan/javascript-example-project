@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ini adalah beberapa contoh project latihan Vanilla JavaScript"
+    />
+    <meta
+      name="keywords"
+      content="Belajar HTML, Belajar JavaScript, Project JavaScript, Latihan JavaScript, Vanilla JavaScript"
+    />
+    <meta name="author" content="Adnan Muttaqin" />
+    <meta name="theme-color" content="#252827" />
+    <title>To Do List</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/website/favicon-iniadnan.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/reset.css" />
+  </head>
+  <style>
+    button {
+      cursor: pointer;
+    }
+    .main {
+      max-width: 700px;
+      width: 80%;
+      margin: 100px auto;
+    }
+    form {
+      width: 100%;
+      position: relative;
+      margin-bottom: 40px;
+    }
+    form input {
+      width: 100%;
+      height: 60px;
+      background-color: #f6f6f6;
+      border-radius: 5px;
+      padding: 0px 60px 0px 18px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #333;
+    }
+    form input::placeholder {
+      color: #999;
+      opacity: 0.7;
+    }
+    form button {
+      height: 40px;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      background-color: #000;
+      color: #fff;
+      cursor: pointer;
+    }
+    form button svg {
+      transition: 0.15s ease-in;
+    }
+    form button:hover svg {
+      transform: rotate(45deg);
+    }
+    h1 {
+      padding: 24px 0px;
+      font-weight: 500;
+      font-size: 40px;
+      color: #000;
+      text-align: center;
+    }
+    .to-do-list-container {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      position: relative;
+    }
+    .to-do-list-grid {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 16px;
+    }
+    .button-grid {
+      height: 35px;
+      width: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      margin-left: 12px;
+      transition: 0.15s ease-in;
+      background-color: #f6f6f6;
+    }
+    .button-grid:hover {
+      background-color: #000 !important;
+      color: #fff !important;
+    }
+    .button-grid-active {
+      background-color: #000 !important;
+      color: #fff !important;
+    }
+    .to-do-list-item {
+      width: 100%;
+      position: relative;
+      background-color: #f6f6f6;
+      padding: 16px 64px 16px 24px;
+      margin-bottom: 16px;
+      border-radius: 4px;
+    }
+    .to-do-list-item::after {
+      content: "";
+      flex: auto;
+    }
+    .to-do-list-item h2 {
+      font-weight: 500;
+      font-size: 24px;
+      color: #333;
+    }
+    .to-do-list-delete {
+      height: 35px;
+      width: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      background-color: transparent;
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      background-color: transparent;
+      color: #ff3f00;
+      transition: 0.15s ease-in;
+    }
+    .to-do-list-delete:hover {
+      background-color: #ff3f00;
+      color: #fff;
+    }
+    @media (max-width: 991px) {
+      .main {
+        width: 80%;
+        margin: 100px auto;
+      }
+    }
+    @media (max-width: 768px) {
+      .main {
+        width: 88%;
+        margin: 80px auto;
+      }
+      form {
+        margin-bottom: 35px;
+      }
+    }
+    @media (max-width: 576px) {
+      .main {
+        width: 95%;
+        margin: 50px auto;
+      }
+      form {
+        margin-bottom: 25px;
+      }
+    }
+  </style>
+  <body>
+    <main class="main">
+      <h1>To-Do-List</h1>
+      <form>
+        <input
+          type="text"
+          id="inputToDoList"
+          placeholder="Write New To-Do-List"
+        />
+        <button type="button" onclick="createToDoList()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-send"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"
+            />
+          </svg>
+        </button>
+      </form>
+      <section class="to-do-list-container">
+        <div class="to-do-list-grid">
+          <button
+            type="button"
+            class="button-grid button-grid-active"
+            onclick="gridOne(this)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              fill="currentColor"
+              class="bi bi-grip-horizontal"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+              />
+            </svg>
+          </button>
+          <button type="button" class="button-grid" onclick="gridTwo(this)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              fill="currentColor"
+              class="bi bi-grip-vertical"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script>
+    // GET DOM
+    const tdlcDOM = document.querySelector(".to-do-list-container");
+    const inputDOM = document.querySelector("#inputToDoList");
+    let gridActive = 1;
+
+    // FUNCTION: RANDOM STRING TO ID
+    function makeID(length) {
+      let result = "";
+      let characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+      let charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
+      return result;
+    }
+
+    // CHANGE SIZE GRID
+    function changeGridSize() {
+      if (gridActive == 1) {
+        let cols = document.getElementsByClassName("to-do-list-item");
+        for (i = 0; i < cols.length; i++) {
+          cols[i].style.width = "100%";
+        }
+      } else if (gridActive == 2) {
+        let cols = document.getElementsByClassName("to-do-list-item");
+        for (i = 0; i < cols.length; i++) {
+          cols[i].style.width = "49%";
+        }
+      }
+    }
+
+    // FUNCTION: GRID ONE
+    function gridOne(e) {
+      e.nextElementSibling.classList.remove("button-grid-active");
+      e.classList.add("button-grid-active");
+      gridActive = 1;
+      changeGridSize();
+    }
+
+    // FUNCTION: GRID TWO
+    function gridTwo(e) {
+      e.previousElementSibling.classList.remove("button-grid-active");
+      e.classList.add("button-grid-active");
+      gridActive = 2;
+      changeGridSize();
+    }
+
+    // FUNCTION: DELETE TO DO LIST
+    function deleteToDoList(id) {
+      document.querySelector(".to-do-list-id-" + id).remove();
+    }
+
+    // FUNCTION: CREATE TO DO LIST
+    function createToDoList() {
+      if (inputDOM.value == 0) {
+        alert("please write something before submit!");
+        return;
+      }
+      let id = makeID(5);
+      const newArticle = document.createElement("ARTICLE");
+      newArticle.classList.add("to-do-list-item", `to-do-list-id-${id}`);
+      newArticle.innerHTML =
+        `
+            <h2>` +
+        inputDOM.value +
+        `</h2>
+            <button type="button" class="to-do-list-delete" onclick="deleteToDoList('` +
+        id +
+        `')">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              fill="currentColor"
+              class="bi bi-x-lg"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"
+              />
+            </svg>
+          </button>
+        `;
+      tdlcDOM.appendChild(newArticle);
+      inputDOM.value = "";
+      changeGridSize();
+    }
+  </script>
+</html>
